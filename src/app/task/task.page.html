@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content>
-    <ion-list>
+    <ion-list *ngFor='let task of tasklist;index as i'>
       <ion-item>
           <ion-card style="border-radius: 10px;" >
               <ion-grid>
@@ -14,26 +14,29 @@
                   <ion-card-header>
                     <ion-row>
                     <ion-col>
-                  <ion-card-title>Task 1</ion-card-title>
+                  <ion-card-title>{{task.title}}</ion-card-title>
                 </ion-col>
                 
-                <ion-col>
-                  <ion-button (click)="navme()">
-                    VIEW IN MAPS
+                <ion-col style="padding-left: 50%;">
+                  <ion-button  fill="clear" color="danger"  (click)="navme()">
+                    <ion-icon size="large"  name="location-sharp"></ion-icon>
                   </ion-button>
                 </ion-col>
               </ion-row>
-                  <ion-card-subtitle>1 month</ion-card-subtitle>
+                  <ion-card-subtitle>{{task.duration}}</ion-card-subtitle>
                   </ion-card-header>
                
              
                 </ion-grid>
                   <ion-card-content>
-                    External Wash Weekly + 1 Extra interior wash
+                    <ion-label text-wrap>{{task.det}}</ion-label>
+                  
+                    <ion-button *ngIf="i==0" color="{{bucolor}}" (click)="anonLogin(task)">{{butext}}</ion-button>
                   </ion-card-content>
+                  
             </ion-card>
       </ion-item>
-      <ion-item>
+      <!-- <ion-item>
 
      
           <ion-card style="border-radius: 10px;">
@@ -59,7 +62,7 @@
                 External Wash daily + 2 Extra interior wash
               </ion-card-content>
         </ion-card>
-      </ion-item>
+      </ion-item> -->
       </ion-list>
         
       

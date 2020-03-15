@@ -108,6 +108,7 @@ export class HomePage {
       this.updateMap(locations);
       console.log(locations);
     });
+    
   }
    
   // Delete a location from Firebase
