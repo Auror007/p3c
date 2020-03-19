@@ -1,0 +1,23 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title align-title="center">Verify OTP</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <br>
+  <br>
+
+  <ion-item>
+    <ion-label position="floating" center>
+      CONFIRM OTP
+    </ion-label>
+    <ion-input type="number" [(ngModel)]="otp"></ion-input>
+  </ion-item> <br>
+  <br>
+
+  <ion-row>
+      <ion-button style="margin-left: 35%;margin-right: 30%;" fill="solid" shape="round" color="dark" expand="block" class="buttons" size="large"
+        (click)=verify()>VERIFY</ion-button>
+  </ion-row>
+</ion-content>

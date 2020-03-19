@@ -5,7 +5,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { Observable } from 'rxjs';
 import {map} from 'rxjs/operators';
 import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/firestore';
-
+import {HttpClient} from '@angular/common/http';
 const {Geolocation} =Plugins;
 
 
@@ -37,13 +37,19 @@ export class TaskPage implements OnInit {
   constructor(
     private launchnavigator:LaunchNavigator,
     private afAuth:AngularFireAuth,
-    private afs:AngularFirestore
+    private afs:AngularFirestore,
+    private http:HttpClient
 
   ) { 
    // this.anonLogin();
   }
 
   ngOnInit() {
+    this.http.post('https://mywash.herokuapp.com/batch',{email:'meetp6041@gmail.com'}).subscribe((result)=>{
+      
+      console.log(result);
+      
+    });
   }
 
   navme(){
@@ -101,6 +107,9 @@ export class TaskPage implements OnInit {
     }
     else if(this.butext=="TASK COMPLETED")
     {
+      this.http.post<{message:string}>("https://mywash.herokuapp.com/batch/flag",{email:'meetp6041@gmail.com'}).subscribe((result)=>{
+        console.log(result.message);
+      });
       this.deleteTask(pos);
     }
   }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { HttpClient } from '@angular/common/http';
+import {Storage} from '@ionic/storage';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -8,15 +9,29 @@ import { Router } from '@angular/router';
 })
 export class LoginPage implements OnInit {
 
+  public email:string;
+
   constructor(
-    private router:Router
+    private router:Router,
+    private http:HttpClient,
+    private storage:Storage
   ) { }
 
   ngOnInit() {
   }
 
   login(){
-    this.router.navigateByUrl('/task');
+
+    const data={email:this.email }
+    console.log(data);
+    
+    this.http.post('https://mywash.herokuapp.com/cleaner/loginotp',data).subscribe((result)=>{
+    console.log(result);
+    this.storage.set('email',this.email);
+    this.router.navigateByUrl('/loginotp');
+
+    
+    })
     
   }
 
