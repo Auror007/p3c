@@ -18,6 +18,12 @@ export class LoginPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.storage.get('activity').then((res)=>{
+if(res=='loggedin'){
+  this.router.navigateByUrl('/task');
+}    
+
+    });
   }
 
   login(){
@@ -27,8 +33,12 @@ export class LoginPage implements OnInit {
     
     this.http.post('https://mywash.herokuapp.com/cleaner/loginotp',data).subscribe((result)=>{
     console.log(result);
-    this.storage.set('email',this.email);
-    this.router.navigateByUrl('/loginotp');
+    this.storage.set('email',this.email).then((res)=>{
+      console.log(res);
+      this.router.navigateByUrl('/loginotp');
+
+    });
+
 
     
     })

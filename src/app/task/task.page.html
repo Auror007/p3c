@@ -5,7 +5,8 @@
 </ion-header>
 
 <ion-content>
-    <ion-list *ngFor='let task of tasklist;index as i'>
+ 
+     <ion-list [hidden]="!fla" *ngFor='let task of tasklist;index as i'>
       <ion-item>
           <ion-card style="border-radius: 10px;" >
               <ion-grid>
@@ -14,31 +15,66 @@
                   <ion-card-header>
                     <ion-row>
                     <ion-col>
-                  <ion-card-title>{{task.title}}</ion-card-title>
-                </ion-col>
-                
-                <ion-col style="padding-left: 50%;">
-                  <ion-button  fill="clear" color="danger"  (click)="navme()">
-                    <ion-icon size="large"  name="location-sharp"></ion-icon>
-                  </ion-button>
-                </ion-col>
-              </ion-row>
-                  <ion-card-subtitle>{{task.duration}}</ion-card-subtitle>
-                  </ion-card-header>
+                      <ion-card-title><h3>{{task.title}}</h3></ion-card-title>
+                    </ion-col>
+                  </ion-row>
+                </ion-card-header>
+<ion-card-content>
+
+                  <br>
+                  <b>Address</b>
+                   <ion-row>
+                     <ion-col size=9 text-wrap>
+                      {{task.address}}<br>
+                      <b>Location:</b>{{task.parkingarea}}
+                     </ion-col>
+                     <ion-col size=3>
+                      <ion-button  fill="clear" color="danger"  (click)="navme()">
+                        <ion-icon size="large"  name="location-sharp"></ion-icon>
+                      </ion-button>
+                    </ion-col>
+                    </ion-row>
+
+                    <br>
+                  <b>Vehicle Details</b>
+                   <ion-row>
+                    
+                     Name: {{task.brandName}} {{task.vehicleModel}}
+                     
+                    </ion-row>
+
+                     <ion-row>
+                       Reg.No: {{task.number}}
+                    </ion-row>
+
+                    <br>
+                  <b>Service details</b>
+                   <ion-row>
+                     Service: {{task.name}}
+                    </ion-row>
+                    <ion-row text-wrap>
+                      Details: {{task.details}}
+                     </ion-row> 
+                     <ion-row text-wrap>
+                      Description: {{task.description}}
+                     </ion-row>
+                    <br>
+
+                     <ion-row style="align-items: center; margin-left: 30%;margin-right: 30%;">
+                     <ion-button *ngIf="i==0" size='medium' color="{{bucolor}}" (click)="anonLogin(task)">{{butext}}</ion-button>
+                    </ion-row>
                
-             
+                    </ion-card-content> 
+
                 </ion-grid>
-                  <ion-card-content>
-                    <ion-label text-wrap>{{task.det}}</ion-label>
-                  
-                    <ion-button *ngIf="i==0" color="{{bucolor}}" (click)="anonLogin(task)">{{butext}}</ion-button>
-                  </ion-card-content>
-                  
+
             </ion-card>
       </ion-item>
-    </ion-list>
-        
-      
+    </ion-list>  
+    <ion-button [hidden]="fla" class="ion-text-center " id ="cool-button-div"(click)="flag()">
+      GET TASKS
+    </ion-button>
+     
         
 </ion-content>
 

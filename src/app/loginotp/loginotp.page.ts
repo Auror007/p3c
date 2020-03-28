@@ -34,7 +34,11 @@ export class LoginotpPage implements OnInit {
     this.http.post('https://mywash.herokuapp.com/cleaner/verifylogin',data).subscribe((result)=>{
 
     console.log(result);
-    this.router.navigateByUrl('/task');
+    this.storage.set('activity','loggedin').then((res)=>{
+      console.log(res);
+      this.router.navigateByUrl('/task');
+
+    });
 
   })
   }
