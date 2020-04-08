@@ -36,7 +36,7 @@ export class LoginotpPage implements OnInit {
     console.log(result);
     this.storage.set('activity','loggedin').then((res)=>{
       console.log(res);
-      this.router.navigateByUrl('/task');
+      this.router.navigate(['/task'],{replaceUrl:true});
 
     });
 

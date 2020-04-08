@@ -7,6 +7,8 @@ import {map} from 'rxjs/operators';
 import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/firestore';
 import {HttpClient} from '@angular/common/http';
 import {Storage} from '@ionic/storage';
+import { ToastController, NavController } from '@ionic/angular';
+
 
 
 const {Geolocation} =Plugins;
@@ -50,6 +52,8 @@ export class TaskPage implements OnInit {
     private afs:AngularFirestore,
     private http:HttpClient,
     private storage:Storage,
+    public toastController: ToastController,
+    private nav: NavController
 
 
   ) { 
@@ -65,8 +69,6 @@ export class TaskPage implements OnInit {
     }).then(()=>{
       this.batch();
     })
-
-
     
    }
   batch(){
@@ -86,15 +88,28 @@ export class TaskPage implements OnInit {
       name:string,
       details:string,
       description:string
-    }>}>,message:boolean,err:string}>('https://mywash.herokuapp.com/batch',{email:this.email}).subscribe((result)=>{
+    }>}>,message:boolean,err:string}>('https://mywash.herokuapp.com/batch',{email:this.email}).subscribe(async (result)=>{
       console.log(result);
       if(result.message==false){
 console.log("FALSSSE");
+const toast = await this.toastController.create({
+  message: 'No service pending right now',
+  duration: 1500,
+  position:'top'
+});
+toast.present();
 
         this.fla=0;
       }
-      else if(result.err=='err'){
+      else if(result.list.length==0){
 console.log("ERROR");
+const toast = await this.toastController.create({
+  message: 'No service available right now,check later',
+  duration: 1500,
+  position:'top'
+});
+toast.present();
+
 this.fla=0;
 
 

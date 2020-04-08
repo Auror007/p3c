@@ -35,8 +35,8 @@ if(res=='loggedin'){
     console.log(result);
     this.storage.set('email',this.email).then((res)=>{
       console.log(res);
-      this.router.navigateByUrl('/loginotp');
-
+      // this.router.navigateByUrl('/loginotp',{skipLocationChange:true});
+      this.router.navigate(['/loginotp'],{replaceUrl:true});
     });
 
 

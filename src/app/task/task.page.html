@@ -8,7 +8,7 @@
  
      <ion-list [hidden]="!fla" *ngFor='let task of tasklist;index as i'>
       <ion-item>
-          <ion-card style="border-radius: 10px;" >
+          <ion-card style="border-radius: 10px;width:95%;" >
               <ion-grid>
                 
                 
@@ -60,9 +60,8 @@
                      </ion-row>
                     <br>
 
-                     <ion-row style="align-items: center; margin-left: 30%;margin-right: 30%;">
-                     <ion-button *ngIf="i==0" size='medium' color="{{bucolor}}" (click)="anonLogin(task)">{{butext}}</ion-button>
-                    </ion-row>
+                     <ion-button text-wrap *ngIf="i==0" expand="full" size="medium" style="margin-top: 5% !important;align-items: center;" color="{{bucolor}}" (click)="anonLogin(task)">{{butext}}</ion-button>
+                   
                
                     </ion-card-content> 
 
@@ -71,7 +70,7 @@
             </ion-card>
       </ion-item>
     </ion-list>  
-    <ion-button [hidden]="fla" class="ion-text-center " id ="cool-button-div"(click)="flag()">
+    <ion-button [hidden]="fla" class="cool-button-div"(click)="flag()">
       GET TASKS
     </ion-button>
      
